@@ -90,13 +90,18 @@ const Card = () => {
   );
 
   if (loading) {
-    return <div>Loading...</div>;
+    return( <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-background to-secondary/20">
+      <div className="flex flex-col items-center space-y-4">
+        <div className="animate-spin rounded-full h-24 w-24 border-t-4 border-primary"></div> {/* Spinner */}
+        <p className="text-2xl text-muted-foreground font-semibold">Loading, please wait...</p>
+      </div>
+    </div>)
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary/20">
       <div className="max-w-7xl mx-auto p-8">
-        <div className="space-y-4 text-center mb-12">
+        <div className="space-y-3 text-center mb-2">
           <h1 className="text-5xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/60 bg-clip-text">
             Featured Listings
           </h1>
@@ -113,18 +118,18 @@ const Card = () => {
         </div>
 
         {/* Sorting and Filtering Section */}
-        <div className="flex flex-col sm:flex-row items-center justify-end mb-6 gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-end gap-4">
           <input
             type="text"
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full sm:w-auto border-gray-300 rounded-lg shadow-sm focus:ring-black focus:border-black p-3"
+            className="w-full sm:w-auto border-gray-300 rounded-lg shadow-sm focus:ring-black focus:border-black p-1"
           />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="w-full sm:w-auto border-gray-300 rounded-lg shadow-sm focus:ring-black focus:border-black p-3"
+            className="w-full sm:w-auto border-gray-300 rounded-lg shadow-sm focus:ring-black focus:border-black p-1"
           >
             <option value="id">Sort by ID</option>
             <option value="title">Sort by Title</option>
@@ -134,19 +139,32 @@ const Card = () => {
 
       {/* Cards */}
       <div className="h-[800px] max-w-7xl mx-auto rounded-xl border bg-background/50 backdrop-blur-sm overflow-y-auto slim-scroll">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          {filteredItems.map((item) => (
-            <ItemCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              description={item.body}
-              onDelete={() => toggleDeleteModal(item.id)}
-              onEdit={handleEdit}
-            />
-          ))}
-        </div>
-      </div>
+  {filteredItems.length > 0 ? (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      {filteredItems.map((item) => (
+        <ItemCard
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          description={item.body}
+          onDelete={() => toggleDeleteModal(item.id)}
+          onEdit={handleEdit}
+        />
+      ))}
+    </div>
+  ) : (
+    <div className="flex items-center justify-center min-h-[400px] bg-background/50 rounded-xl shadow-lg p-8">
+    <div className="text-center space-y-4">
+      <p className="text-muted-foreground text-2xl font-semibold">
+        No posts available
+      </p>
+      <p className="text-lg text-muted-foreground">
+        It looks like there are no posts right now. 
+      </p>
+    </div>
+  </div>
+  )}
+</div>
 
       {/* Add/Edit Modal Form*/}
       <AddPost
