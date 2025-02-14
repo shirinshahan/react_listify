@@ -2,17 +2,19 @@ React Listify
 A React-based application that allows users to view, add, edit, and delete posts in a responsive interface with sorting and filtering options.
 
 Live Demo
+
 You can view the live application here:
 
 https://react-listify-alpha.vercel.app/
 
 Features
-View a list of posts with title and description
-Add new posts with custom titles and descriptions
-Edit existing posts
-Delete posts
-Sort posts by title or ID
-Filter post by title or description
+ View a list of posts with title and description,
+ Add new posts with custom titles and descriptions,
+ Edit existing posts, 
+ Delete posts,
+ Sort posts by title or ID and 
+ Filter post by title or description
+
 Installation
 Follow these steps to clone and run the project locally:
 
