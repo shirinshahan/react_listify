@@ -1,0 +1,14 @@
+.slim-scroll::-webkit-scrollbar {
+    width: 4px; /* Extremely thin scrollbar */
+    height: 4px; 
+  }
+  
+  .slim-scroll::-webkit-scrollbar-thumb {
+    background-color: #aaa; 
+    border-radius: 10px;
+  }
+  
+  .slim-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
